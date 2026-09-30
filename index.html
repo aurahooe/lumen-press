@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen Press</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,320;0,9..144,560;0,9..144,720;1,9..144,420&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+
+  <header class="mast">
+    <a class="mark" href="#" data-view="home">
+      <span class="mark-dot"></span>
+      Lumen Press
+    </a>
+    <nav>
+      <button type="button" data-view="home">This hour</button>
+      <button type="button" data-view="wall">The wall</button>
+      <button type="button" data-view="desk" id="deskBtn">Your desk</button>
+    </nav>
+    <div class="mast-right">
+      <span id="clock" class="clock"></span>
+      <button type="button" class="ghost" id="authBtn">Sign in</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-home" class="view active">
+      <p class="kicker" id="hourKicker">The hour is turning</p>
+      <h1 class="display" id="hourTitle">A room that keeps the hour.</h1>
+      <p class="lede" id="hourNote">Public writing lives on the wall. Once an hour, something from it is brought to the front.</p>
+      <article class="feature" id="hourFeature" hidden>
+        <p class="meta" id="hourMeta"></p>
+        <div class="body" id="hourBody"></div>
+      </article>
+      <div class="hour-meter">
+        <div class="bar" id="hourBar"></div>
+        <p id="hourLeft">until the next feature</p>
+      </div>
+    </section>
+
+    <section id="view-wall" class="view">
+      <p class="kicker">Open to the room</p>
+      <h2 class="display small">Public pieces</h2>
+      <p class="lede thin">Anything marked public appears here. Private drafts stay at your desk.</p>
+      <div id="wall" class="grid"></div>
+    </section>
+
+    <section id="view-desk" class="view">
+      <p class="kicker">Your desk</p>
+      <h2 class="display small">Write something that lasts an hour, or longer.</h2>
+      <form id="pieceForm" class="compose">
+        <label>Title<input name="title" maxlength="120" required placeholder="A title that can stand alone" /></label>
+        <label>The piece<textarea name="body" required rows="8" placeholder="Leave a paragraph, a note, a scrap."></textarea></label>
+        <label class="check"><input type="checkbox" name="is_public" /> Mark public — it will show on the wall</label>
+        <button type="submit" class="solid">Save</button>
+      </form>
+      <div id="mine" class="stack"></div>
+    </section>
+
+    <section id="view-auth" class="view">
+      <p class="kicker">The door</p>
+      <h2 class="display small">Sign in to keep a desk.</h2>
+      <form id="authForm" class="compose slim">
+        <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+        <label>Password<input type="password" name="password" required minlength="6" autocomplete="current-password" /></label>
+        <div class="row">
+          <button type="submit" class="solid" data-mode="signin">Sign in</button>
+          <button type="button" class="ghost" id="signupBtn">Create account</button>
+        </div>
+        <p class="hint" id="authHint"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Lumen Press keeps the hour. Features rotate at the top of every hour.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
